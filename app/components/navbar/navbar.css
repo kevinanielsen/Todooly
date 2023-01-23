@@ -1,0 +1,46 @@
+/* * {
+    border: solid red 1px
+} */
+
+:root {
+    --green: #00FFC2;
+    --bkg: #212121;
+    --darker: #111111;
+    --red-semi: hsla(360, 88, 46, .15);
+    --light-red: #F57070;
+    --green-semi: hsla(130, 87, 32, .15);
+    --light-green: #6BF581;
+    --text: #EAEAEA;
+    --text-semi: hsla(0, 0, 92, .5);
+    --black-semi: hsla(0, 0, 0, .8);
+}
+
+nav {
+    background-color: var(--green);
+    color: var(--darker);
+}
+
+.nav-container {
+    display: flex;
+    height: 80px;
+    margin-left: 24px;
+    margin-right: 24px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    max-width: 190px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+}
+
+h1 {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 40px;
+}
+
