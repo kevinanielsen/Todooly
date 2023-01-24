@@ -18,6 +18,7 @@
 nav {
     background-color: var(--green);
     color: var(--darker);
+    margin-bottom: 12px;
 }
 
 .nav-container {

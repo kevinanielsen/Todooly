@@ -24,6 +24,12 @@ body {
   background-color: var(--bkg);
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 a {
   color: inherit;
 }
