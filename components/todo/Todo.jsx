@@ -1,6 +1,8 @@
 'use client'
 import Link from 'next/link';
 import { CheckSquare, Pencil, Trash } from 'phosphor-react';
+import { CheckTask } from '../checkTask/CheckTask';
+import { DeleteTask } from '../deleteTask/DeleteTask';
 
 export function Todo(props) {
     return(
@@ -13,12 +15,8 @@ export function Todo(props) {
                 >
                     <Pencil size={32} color="#60B3FF" />
                 </Link>
-                <button className='rounded-lg bg-greensemi items-center justify-center flex w-10 h-10'>
-                    <CheckSquare size={32} color="#6BF581" />
-                </button>
-                <button className='rounded-lg bg-redsemi w-10 h-10 items-center justify-center flex'>
-                    <Trash size={32} color="#F57070" />
-                </button>
+                <CheckTask id={props.id}/>
+                <DeleteTask id={props.id} />
             </div>
         </div>
     )

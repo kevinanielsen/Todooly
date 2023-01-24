@@ -26,10 +26,13 @@ module.exports = {
       sans: ["Outfit", "sans-serif"],
     },
     fontSize: {
-      xs: "18px",
-      sm: "24px",
-      lg: "40px",
-      base: "32px",
+      xs: "14px",
+      sm: "18px",
+      base: "24px",
+      lg: "32px",
+      xl: "40px",
+      
+      
     },
     borderRadius: {
       "2xl": "20px",
