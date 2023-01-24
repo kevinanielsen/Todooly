@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 
 :root {
   --green: #00FFC2;
@@ -11,25 +15,4 @@
   --text: #EAEAEA;
   --text-semi: hsla(0, 0, 92, .5);
   --black-semi: hsla(0, 0, 0, .8);
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  font-family: 'Outfit', sans-serif;
-}
-
-body {
-  background-color: var(--bkg);
-}
-
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-a {
-  color: inherit;
 }

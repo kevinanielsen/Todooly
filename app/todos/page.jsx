@@ -1,6 +1,6 @@
 
-import { Navbar } from '../components/navbar/Navbar';
-import { Todo } from '../components/todo/Todo';
+import { Navbar } from '../../components/navbar/Navbar';
+import { Todo } from '../../components/todo/Todo';
 
 async function getTodos() {
     const res = await fetch('http://127.0.0.1:8090/api/collections/tasks/records');
