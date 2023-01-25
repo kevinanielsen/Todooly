@@ -25,7 +25,8 @@ export function DescriptionInput(props) {
             "task": title,
             "description": description
         })
-        router.push('/todos')
+        router.push('/todos');
+        router.refresh();
     }
 
     return (
