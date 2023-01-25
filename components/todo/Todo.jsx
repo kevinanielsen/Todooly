@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link';
-import { CheckSquare, Pencil, Trash } from 'phosphor-react';
+import { Pencil } from 'phosphor-react';
 import { CheckTask } from '../checkTask/CheckTask';
 import { DeleteTask } from '../deleteTask/DeleteTask';
 

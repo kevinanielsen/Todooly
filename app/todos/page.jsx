@@ -10,13 +10,15 @@ export const dynamic = 'auto',
     preferredRegion = 'auto';
 
 async function getTodos() {
-
     const db = new PocketBase('http://127.0.0.1:8090');
-    return await db.collection('tasks').getFullList();
+    const data = await db.collection('tasks').getFullList();
+    const notDone = data.filter(todo => todo.done !== true);
+    return notDone;
 }
 
 export default async function TodosPage() {
     const todos = await getTodos();
+    
     return(
         <main className="flex flex-col items-center">
             <NewTodo />
