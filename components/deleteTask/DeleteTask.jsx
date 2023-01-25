@@ -13,7 +13,7 @@ export function DeleteTask(props) {
     }
 
     return (
-        <button className='rounded-lg bg-redsemi w-10 h-10 items-center justify-center flex' onClick={handleDelete}>
+        <button className='rounded-lg bg-redsemi w-10 h-10 items-center justify-center flex' onClick={handleDelete} aria-label="Delete task" >
             <Trash size={32} color="#F57070" />
         </button>
     )

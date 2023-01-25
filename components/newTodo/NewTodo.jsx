@@ -23,13 +23,13 @@ export function NewTodo() {
     }
 
     return(
-        <form onSubmit={handleSubmit} className="w-2/3 my-3">
+        <form onSubmit={handleSubmit} className="w-11/12 md:w-2/3 my-3 transition-all duration-300 motion-reduce:transition-none">
             <input 
                 type="text" 
                 onChange={(e) => setInput(e.target.value)} 
                 value={input} 
                 placeholder="New task..."
-                className="w-full bg-bkg border-solid border-4 border-darker w-full text-sm p-3 text-textsemi rounded-2xl focus:outline-none focus:border-text focus:border-3 transition-all duration-300"
+                className="w-full border-solid border-4 w-full text-sm p-3  rounded-2xl bg-text text-bkg focus:border-bkg dark:text-textsemi dark:border-darker dark:bg-bkg focus:outline-none dark:focus:border-text focus:border-3 transition-all duration-300 motion-reduce:transition-none focus:motion-reduce:transition-none"
             />
         </form>
     )

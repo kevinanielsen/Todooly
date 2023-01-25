@@ -14,7 +14,7 @@ export function CheckTask(props) {
     }
 
     return(
-        <button className='rounded-lg bg-greensemi items-center justify-center flex w-10 h-10' onClick={handleCheck}>
+        <button className='rounded-lg bg-greensemi items-center justify-center flex w-10 h-10' onClick={handleCheck} aria-label="Task done">
             <CheckSquare size={32} color="#6BF581" />
         </button>
     )

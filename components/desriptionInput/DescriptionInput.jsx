@@ -36,6 +36,7 @@ export function DescriptionInput(props) {
                 className="text-lg text-text font-light border-solid border-b-4 w-full border-darker bg-bkg focus:outline-none"
                 value={title}
                 onChange={handleTitleChange}
+                aria-label="Edit task-name"
             >
             </input>
             <h3 className="text-sm text-darker">Description</h3>
@@ -44,9 +45,10 @@ export function DescriptionInput(props) {
                 className="bg-darker rounded-lg focus:outline-none p-6 text-text text-xs h-96 w-full items-baseline flex resize-none shrink mb-5"
                 value={description} 
                 onChange={handleChange}
+                aria-label="Edit task-description"
             ></textarea>
             <div className="flex">
-                <button type="submit" className='rounded-lg bg-greensemi items-center justify-center flex w-auto h-10 text-lightgreen px-1.5 mr-4'>Editing Done<CheckSquare size={32} color="#6BF581" className="ml-2" /></button>
+                <button type="submit" className='rounded-lg bg-greensemi items-center justify-center flex w-auto h-10 text-lightgreen px-1.5 mr-4' aria-label="Done editing" >Editing Done<CheckSquare size={32} color="#6BF581" className="ml-2" /></button>
                 <DeleteTask id={todo.id} />
             </div>
 
