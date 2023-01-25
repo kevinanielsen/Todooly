@@ -3,7 +3,7 @@ import { DescriptionInput } from '../../../components/desriptionInput/Descriptio
 
 async function getTodo(todoId) {
 
-    const db = new PocketBase('http://127.0.0.1:8090');
+    const db = new PocketBase('https://todooly-pocketbase.fly.dev');
     const data = await db.collection('tasks').getOne(todoId);
     return data;
 }

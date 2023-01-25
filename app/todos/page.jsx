@@ -10,7 +10,7 @@ export const dynamic = 'auto',
     preferredRegion = 'auto';
 
 async function getTodos() {
-    const db = new PocketBase('http://127.0.0.1:8090');
+    const db = new PocketBase('https://todooly-pocketbase.fly.dev');
     const data = await db.collection('tasks').getFullList();
     const notDone = data.filter(todo => todo.done !== true);
     return notDone;

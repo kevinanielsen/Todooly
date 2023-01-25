@@ -7,7 +7,7 @@ export function NewTodo() {
     const [input, setInput] = useState("");
 
     const router = useRouter();
-    const db = new PocketBase('http://127.0.0.1:8090');
+    const db = new PocketBase('https://todooly-pocketbase.fly.dev');
 
     async function handleSubmit(e) {
         e.preventDefault();

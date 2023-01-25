@@ -5,7 +5,7 @@ import PocketBase from 'pocketbase';
 export function DeleteTask(props) {
 
     const router = useRouter();
-    const db = new PocketBase('http://127.0.0.1:8090');
+    const db = new PocketBase('https://todooly-pocketbase.fly.dev');
 
     const handleDelete = async taskId => {
         await db.collection('tasks').delete(props.id);

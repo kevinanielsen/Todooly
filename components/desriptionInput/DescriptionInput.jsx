@@ -6,7 +6,7 @@ import { useState } from "react";
 import { DeleteTask } from '../deleteTask/DeleteTask';
 
 export function DescriptionInput(props) {
-    const db = new PocketBase('http://127.0.0.1:8090')
+    const db = new PocketBase('https://todooly-pocketbase.fly.dev')
     const router = useRouter();
     const todo = props.todo;
     const [description, setDescription] = useState(todo.description);
