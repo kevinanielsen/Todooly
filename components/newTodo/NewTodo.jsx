@@ -17,9 +17,9 @@ export function NewTodo() {
             "description": ""
         };
         setInput('');
-        router.refresh();
-        
         const record = await db.collection('tasks').create(data);
+
+        router.refresh();
     }
 
     return(

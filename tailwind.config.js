@@ -32,7 +32,7 @@ module.exports = {
       sm: "clamp(1.35rem, calc(1.20rem + 0.38vw), 1.56rem)",
       base: "clamp(1.62rem, calc(1.38rem + 0.59vw), 1.95rem)",
       lg: "clamp(1.94rem, calc(1.59rem + 0.89vw), 2.44rem)",
-      xl: "clamp(2.33rem, calc(1.82rem + 1.28vw), 3.05rem)",
+      xl: "clamp(2.33rem, calc(1.62rem + 1.28vw), 2.60rem)",
     },
     borderRadius: {
       "2xl": "20px",

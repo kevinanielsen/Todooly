@@ -22,7 +22,7 @@ export default async function TodosPage() {
     return(
         <main className="flex flex-col items-center">
             <NewTodo />
-            {todos.map(todo => <Todo task={todo.task} id={todo.id}/>)}
+            {todos.map(todo => <Todo task={todo.task} key={todo.id} id={todo.id}/>)}
         </main>
     )
 }

@@ -8,9 +8,8 @@ import { DeleteTask } from '../deleteTask/DeleteTask';
 export function DescriptionInput(props) {
     const db = new PocketBase('https://todooly-pocketbase.fly.dev')
     const router = useRouter();
-    const todo = props.todo;
-    const [description, setDescription] = useState(todo.description);
-    const [title, setTitle] = useState(todo.task);
+    const [description, setDescription] = useState(props.description);
+    const [title, setTitle] = useState(props.task);
 
     function handleChange(e) {
         setDescription(e.target.value);
@@ -22,7 +21,7 @@ export function DescriptionInput(props) {
 
     async function handleSubmit(e){
         e.preventDefault();
-        const res = await db.collection('tasks').update(todo.id, {
+        const res = await db.collection('tasks').update(props.id, {
             "task": title,
             "description": description
         })
@@ -49,7 +48,7 @@ export function DescriptionInput(props) {
             ></textarea>
             <div className="flex">
                 <button type="submit" className='rounded-lg bg-greensemi items-center justify-center flex w-auto h-10 text-lightgreen px-1.5 mr-4' aria-label="Done editing" >Editing Done<CheckSquare size={32} color="#6BF581" className="ml-2" /></button>
-                <DeleteTask id={todo.id} />
+                <DeleteTask id={props.id} />
             </div>
 
         </form>
