@@ -29,7 +29,7 @@ export function NewTodo() {
                 onChange={(e) => setInput(e.target.value)} 
                 value={input} 
                 placeholder="New task..."
-                className="w-full bg-bkg border-solid border-4 border-darker w-full text-sm p-3 text-textsemi rounded-2xl"
+                className="w-full bg-bkg border-solid border-4 border-darker w-full text-sm p-3 text-textsemi rounded-2xl focus:outline-none focus:border-text focus:border-3 transition-all duration-300"
             />
         </form>
     )
