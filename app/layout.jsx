@@ -49,7 +49,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="" >
       <head />
-      <body className='bg-white dark:bg-bkg transition-all duration-300 motion-reduce:transition-none'>
+      <body className='h-full w-full bg-white dark:bg-bkg transition-all duration-300 motion-reduce:transition-none'>
         <header>
           <nav className="bg-green text-darker mb-3">
             <div className="flex h-20 mx-6 justify-between items-center">
@@ -67,20 +67,20 @@ export default function RootLayout({ children }) {
                     onHoverStart={() => setShown(true)}
                     onHoverEnd={() => setShown(false)}
                   >
-                    <User size={32} aria-label="Account" />
+                    <Link href="/account"><User size={32} aria-label="Account" /></Link>
                     <motion.ul
                       variants={showMenu}
                       initial="exit"
                       animate={shown ? "enter" : "exit"}
                       className="absolute bg-text dark:bg-darker rounded-lg p-6"
                     >
-                      <Link href="/">
+                      <Link href="/account">
                         <motion.li
                           whileHover={{
                             color: "#00FFC2",
                             y: -2,
                           }}
-                          className="cursor-pointer p-1 px-3 py-2 bg-white text-bkg dark:bg-bkg dark:text-text rounded-lg mb-2.5 w-36 flex items-center justify-center"
+                          className="cursor-pointer p-1 px-3 py-2 bg-white text-darker dark:bg-bkg dark:text-text rounded-lg mb-2.5 w-36 flex items-center justify-center"
                         >
                           Account
                         </motion.li>
@@ -91,7 +91,7 @@ export default function RootLayout({ children }) {
                             color: "#00FFC2",
                             y: -2,
                           }}
-                          className="cursor-pointer p-1 px-3 py-2 bg-white text-bkg dark:bg-bkg dark:text-text rounded-lg w-36 flex items-center justify-center"
+                          className="cursor-pointer p-1 px-3 py-2 bg-white text-darker dark:bg-bkg dark:text-text rounded-lg w-36 flex items-center justify-center"
                         >
                           {signedIn ? "Sign out" : "Sign in"}
                         </motion.li>
