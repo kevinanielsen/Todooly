@@ -4,11 +4,14 @@ import Link from 'next/link';
 import { CheckSquare, Moon, Sun, User } from "phosphor-react";
 import { useEffect, useState } from 'react';
 import './globals.css';
+import { getCookie } from 'cookies-next';
 
 export default function RootLayout({ children }) {
   const [theme, setTheme] = useState('light');
   const [shown, setShown] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
+
+  const user = getCookie('user')
 
   useEffect(() => {
     if(theme === "dark") {
@@ -17,6 +20,8 @@ export default function RootLayout({ children }) {
       document.documentElement.classList.remove('dark')
     }
   }, [theme])
+
+
 
   const handleThemeSwitch = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
