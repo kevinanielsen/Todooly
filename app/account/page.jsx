@@ -11,6 +11,7 @@ export default function Account() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [problem, setProblem] = useState();
   
   const user = getCookie("user");
 
@@ -41,8 +42,22 @@ export default function Account() {
     }
   }
 
-  function handleLogin(e) {
-    
+  async function handleLogin(e) {
+    e.preventDefault();
+    try {
+      const record = await db.collection('users').authWithPassword(
+        email,
+        password,
+      );
+      
+      setCookie('user', email);
+      
+      router.refresh();
+    } catch(error) {
+      console.log(error)
+
+      setProblem(error.message);
+    }
   }
 
   function handleSignout(e) {
@@ -52,12 +67,15 @@ export default function Account() {
 
   if(user) {
     return(
-      <button 
-      className="p-5 rounded-lg text-sm ml-3 mt-3 w-6/12 dark:text-text text-bkg dark:bg-darker bg-text transition-all duration-300 motion-reduce:transition-none hover:scale-95"
-      onClick={handleSignout}
-    >
-      Sign out
-    </button>
+      <main className='flex items-center justify-center h-full w-full'>
+        <button 
+          className="p-5 rounded-lg text-sm ml-3 mt-3 w-6/12 dark:text-text text-bkg dark:bg-darker bg-text transition-all duration-300 motion-reduce:transition-none hover:scale-95"
+          onClick={handleSignout}
+        >
+          Sign out
+        </button>
+      </main>
+      
     )
   }
 
@@ -93,6 +111,8 @@ export default function Account() {
           </button>
         </div>
       </form>
+
+      {problem && <h1 className='bg-lightred text-bkg text-base font-bold p-4 mt-2 rounded-lg'>{problem}</h1>}
     </main>
   )
 }
