@@ -12,7 +12,7 @@ export default function Account() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [problem, setProblem] = useState();
-  
+
   const user = getCookie("user");
 
   function handleEmail(e) {
@@ -51,7 +51,7 @@ export default function Account() {
       );
       
       setCookie('user', email);
-      
+    
       router.refresh();
     } catch(error) {
       console.log(error)
@@ -63,6 +63,7 @@ export default function Account() {
   function handleSignout(e) {
     deleteCookie("user");
     router.refresh();
+    db.authStore.clear();
   }
 
   if(user) {
