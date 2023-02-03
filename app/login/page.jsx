@@ -1,12 +1,12 @@
 'use client';
 
-import { useState } from 'react';
-import PocketBase from 'pocketbase';
+import { deleteCookie, getCookie, setCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation';
-import { getCookie, deleteCookie, setCookie } from 'cookies-next';
+import { useState } from 'react';
+import { db } from '../util/pocketbase';
 
 export default function Login() {
-  const db = new PocketBase('https://todooly-pocketbase.fly.dev');
+  
   const router = useRouter();
 
   const [username, setUsername] = useState('');
@@ -38,7 +38,8 @@ export default function Login() {
       );
       
       setCookie('user', username);
-    
+      setProblem();
+      
       router.refresh();
     } catch(error) {
       console.log(error)
@@ -49,7 +50,8 @@ export default function Login() {
 
   if(user) {
     return(
-      <main className='flex items-center justify-center h-full w-full'>
+      <main className='flex flex-col items-center justify-center h-full w-full'>
+        <h1>Welcome, {user}</h1>
         <button 
           className="p-5 rounded-lg text-sm ml-3 mt-3 w-6/12 dark:text-text text-bkg dark:bg-darker bg-text transition-all duration-300 motion-reduce:transition-none hover:scale-95"
           onClick={handleSignout}

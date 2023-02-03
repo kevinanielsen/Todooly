@@ -1,16 +1,20 @@
 'use client';
+import { deleteCookie, getCookie } from 'cookies-next';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { CheckSquare, Moon, Sun, User } from "phosphor-react";
+import PocketBase from 'pocketbase';
 import { useEffect, useState } from 'react';
 import './globals.css';
-import { getCookie } from 'cookies-next';
 
 export default function RootLayout({ children }) {
   const [theme, setTheme] = useState('light');
   const [shown, setShown] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
 
+  const db = new PocketBase('https://todooly-pocketbase.fly.dev');
+  const router = useRouter();
   const user = getCookie('user')
 
   useEffect(() => {
@@ -19,16 +23,16 @@ export default function RootLayout({ children }) {
     } else {
       document.documentElement.classList.remove('dark')
     }
-  }, [theme])
 
-
+    if(user) {
+      setSignedIn(true)
+    } else {
+      setSignedIn(false);
+    }
+  }, [theme, user])
 
   const handleThemeSwitch = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
-  }
-
-  const signIn = () => {
-    setSignedIn(signedIn ? false : true);
   }
 
   const showMenu = {
@@ -50,6 +54,12 @@ export default function RootLayout({ children }) {
       },
     },
   };
+
+  function handleSignout(e) {
+    deleteCookie("user");
+    db.authStore.clear();
+    router.refresh();
+  }
 
   return (
     <html lang="en" className="" >
@@ -90,7 +100,19 @@ export default function RootLayout({ children }) {
                           Account
                         </motion.li>
                       </Link>
-                      <button onClick={signIn}>
+                      {signedIn ? 
+                        <button onClick={handleSignout}>
+                          <motion.li
+                            whileHover={{
+                              color: "#00FFC2",
+                              y: -2,
+                            }}
+                            className="cursor-pointer p-1 px-3 py-2 bg-white text-darker dark:bg-bkg dark:text-text rounded-lg w-36 flex items-center justify-center"
+                        >
+                           Sign out
+                        </motion.li>
+                        </button> : 
+                        <Link href="/login">
                         <motion.li
                           whileHover={{
                             color: "#00FFC2",
@@ -98,9 +120,10 @@ export default function RootLayout({ children }) {
                           }}
                           className="cursor-pointer p-1 px-3 py-2 bg-white text-darker dark:bg-bkg dark:text-text rounded-lg w-36 flex items-center justify-center"
                         >
-                          {signedIn ? "Sign out" : "Sign in"}
+                          Login
                         </motion.li>
-                      </button>
+                      </Link>}
+
                     </motion.ul>
                   </motion.div>
 
