@@ -1,5 +1,5 @@
 import { getCookie } from 'cookies-next';
-import { db } from '../util/pocketbase';
+// import { db } from '../util/pocketbase';
 
 export default function Account() {
   const user = getCookie("user");

@@ -1,6 +1,6 @@
 'use client';
 
-import { deleteCookie, getCookie, setCookie } from 'cookies-next';
+import { deleteCookie, getCookie, getCookies, setCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { db } from '../util/pocketbase';
@@ -13,7 +13,14 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [problem, setProblem] = useState();
 
-  const user = getCookie("user");
+  function getUser() {
+    if (getCookie('auth')){
+      return getCookie('auth').split(',')[7].slice(12, length-1);
+    } else {
+      return;
+    }
+  }
+  const user = getUser()
 
   function handleUsername(e) {
     setUsername(e.target.value);
@@ -24,7 +31,7 @@ export default function Login() {
   }
 
   function handleSignout(e) {
-    deleteCookie("user");
+    deleteCookie("auth");
     router.refresh();
     db.authStore.clear();
   }
@@ -37,9 +44,8 @@ export default function Login() {
         password,
       );
       
-      setCookie('user', username);
       setProblem();
-      
+      setCookie('auth', db.authStore.model)
       router.refresh();
     } catch(error) {
       console.log(error)

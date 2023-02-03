@@ -4,18 +4,25 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { CheckSquare, Moon, Sun, User } from "phosphor-react";
-import PocketBase from 'pocketbase';
 import { useEffect, useState } from 'react';
 import './globals.css';
+import { db } from './util/pocketbase';
 
 export default function RootLayout({ children }) {
   const [theme, setTheme] = useState('light');
   const [shown, setShown] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
 
-  const db = new PocketBase('https://todooly-pocketbase.fly.dev');
   const router = useRouter();
-  const user = getCookie('user')
+  
+  function getUser() {
+    if (getCookie('auth')){
+      return getCookie('auth').split(',')[7].slice(12, length-1);
+    } else {
+      return;
+    }
+  }
+  const user = getUser()
 
   useEffect(() => {
     if(theme === "dark") {
@@ -56,7 +63,7 @@ export default function RootLayout({ children }) {
   };
 
   function handleSignout(e) {
-    deleteCookie("user");
+    deleteCookie("auth");
     db.authStore.clear();
     router.refresh();
   }

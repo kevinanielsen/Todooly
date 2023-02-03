@@ -1,12 +1,11 @@
 'use client';
 
-import { useState } from 'react';
-import PocketBase from 'pocketbase';
-import { setCookie, getCookie, deleteCookie } from 'cookies-next';
+import { deleteCookie, getCookie, setCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { db } from '../util/pocketbase';
 
 export default function Signup() {
-  const db = new PocketBase('https://todooly-pocketbase.fly.dev');
   const router = useRouter();
 
   const [email, setEmail] = useState('');

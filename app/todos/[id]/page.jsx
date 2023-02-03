@@ -1,5 +1,5 @@
-import PocketBase from 'pocketbase';
 import { DescriptionInput } from '../../../components/desriptionInput/DescriptionInput';
+import { db } from '../../util/pocketbase';
 
 export const dynamic = 'auto',
     dynamicParams = true,
@@ -10,7 +10,6 @@ export const dynamic = 'auto',
 
 async function getTodo(todoId) {
 
-    const db = new PocketBase('https://todooly-pocketbase.fly.dev');
     const data = await db.collection('tasks').getOne(todoId);
     return data;
 }
