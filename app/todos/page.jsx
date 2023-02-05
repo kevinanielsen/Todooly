@@ -13,7 +13,7 @@ export const dynamic = 'auto',
 async function getTodos() {
   const user = getUserId();
   const data = await db.collection('tasks').getList(1, 50, {
-    filter: `user = "${user}"`
+    filter: `user = "${user}" && done = false`
   })
   return data;
 }
