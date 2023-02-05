@@ -1,8 +1,10 @@
 'use client';
 
-import { deleteCookie, getCookie, getCookies, setCookie } from 'cookies-next';
+import { deleteCookie, setCookie } from 'cookies-next';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { getUserNameClient } from '../util/getUserClient';
 import { db } from '../util/pocketbase';
 
 export default function Login() {
@@ -13,14 +15,7 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [problem, setProblem] = useState();
 
-  function getUser() {
-    if (getCookie('auth')){
-      return getCookie('auth').split(',')[7].slice(12, length-1);
-    } else {
-      return;
-    }
-  }
-  const user = getUser()
+  const user = getUserNameClient();
 
   function handleUsername(e) {
     setUsername(e.target.value);
@@ -55,6 +50,8 @@ export default function Login() {
   }
 
   if(user) {
+    router.push('/todos');
+    
     return(
       <main className='flex flex-col items-center justify-center h-full w-full'>
         <h1>Welcome, {user}</h1>
@@ -81,7 +78,7 @@ export default function Login() {
           required
         />
         <input 
-          type="text" 
+          type="password" 
           className='w-full border-solid border-4 text-sm p-3 my-3 rounded-2xl bg-text text-bkg focus:border-bkg dark:text-textsemi dark:border-darker dark:bg-bkg focus:outline-none dark:focus:border-text focus:border-3 transition-all duration-300 motion-reduce:transition-none focus:motion-reduce:transition-none' 
           placeholder="Password..."
           value={password}
@@ -94,6 +91,7 @@ export default function Login() {
         >
           Log in
         </button>
+        <Link href="/signup" className='mt-2 text-bg dark:text-text'>Don't have an account? Click here to sign up.</Link>
       </form>
       {problem && <h1 className='bg-lightred text-bkg text-base font-bold p-4 mt-2 rounded-lg'>{problem}</h1>}
     </main>

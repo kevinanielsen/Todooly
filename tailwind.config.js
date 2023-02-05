@@ -22,7 +22,7 @@ module.exports = {
         blue: "#60B3FF",
         bluesemi: "#0035664d",
         bluesemilight: "#00356626"
-      }
+      },
     },
     fontFamily: {
       sans: ["Outfit", "sans-serif"],

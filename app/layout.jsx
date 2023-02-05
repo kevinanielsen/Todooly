@@ -71,7 +71,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="" >
       <head />
-      <body className='h-full w-full bg-white dark:bg-bkg transition-all duration-300 motion-reduce:transition-none'>
+      <body className='h-full w-full min-h-[100vh] bg-white dark:bg-bkg transition-all duration-300 motion-reduce:transition-none'>
         <header>
           <nav className="bg-green text-darker mb-3">
             <div className="flex h-20 mx-6 justify-between items-center">

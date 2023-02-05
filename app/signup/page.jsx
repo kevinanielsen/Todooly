@@ -1,8 +1,10 @@
 'use client';
 
-import { deleteCookie, getCookie, setCookie } from 'cookies-next';
+import { deleteCookie, setCookie } from 'cookies-next';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { getUserNameClient } from '../util/getUserClient';
 import { db } from '../util/pocketbase';
 
 export default function Signup() {
@@ -13,7 +15,7 @@ export default function Signup() {
   const [username, setUsername] = useState('');
   const [problem, setProblem] = useState();
 
-  const user = getCookie("user");
+  const user = getUserNameClient();
 
   function handleEmail(e) {
     setEmail(e.target.value);
@@ -55,8 +57,8 @@ export default function Signup() {
         password,
       );
       
-      setCookie('user', username);
-    
+      setCookie('auth', db.authStore.model);
+      setProblem();
       router.refresh();
     } catch(error) {
       console.log(error)
@@ -72,6 +74,8 @@ export default function Signup() {
   }
 
   if(user) {
+    router.push('/account');
+
     return(
       <main className='flex items-center justify-center h-full w-full'>
         <button 
@@ -81,7 +85,6 @@ export default function Signup() {
           Sign out
         </button>
       </main>
-      
     )
   }
 
@@ -103,7 +106,7 @@ export default function Signup() {
           onChange={handleUsername}
         />
         <input 
-          type="text" 
+          type="password" 
           className='w-full border-solid border-4 text-sm p-3 my-3 rounded-2xl bg-text text-bkg focus:border-bkg dark:text-textsemi dark:border-darker dark:bg-bkg focus:outline-none dark:focus:border-text focus:border-3 transition-all duration-300 motion-reduce:transition-none focus:motion-reduce:transition-none' 
           placeholder="Password..."
           value={password}
@@ -115,6 +118,7 @@ export default function Signup() {
         >
           Sign up
         </button>
+        <Link href="/login" className='mt-2 text-bg dark:text-text'>Already have an account? Click here to log in.</Link>
       </form>
 
       {problem && <h1 className='bg-lightred text-bkg text-base font-bold p-4 mt-2 rounded-lg'>{problem}</h1>}

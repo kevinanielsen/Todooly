@@ -1,20 +1,22 @@
 'use client'
+import { getUserIdClient } from '@/app/util/getUserClient';
 import { useRouter } from 'next/navigation';
-import PocketBase from 'pocketbase';
 import { useState } from 'react';
+import { db } from '../../app/util/pocketbase';
 
 export function NewTodo() {
     const [input, setInput] = useState("");
 
     const router = useRouter();
-    const db = new PocketBase('https://todooly-pocketbase.fly.dev');
+    const user = getUserIdClient();
 
     async function handleSubmit(e) {
         e.preventDefault();
         const data = {
             "task": input,
             "done": false,
-            "description": ""
+            "description": "",
+            "user": user,
         };
         setInput('');
         const record = await db.collection('tasks').create(data);
