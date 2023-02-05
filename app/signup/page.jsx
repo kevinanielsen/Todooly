@@ -42,28 +42,10 @@ export default function Signup() {
     }
     try{ 
       const record = await db.collection('users').create(data)
-      setCookie('user', username);
+      setCookie('auth', db.authStore.model)
       router.refresh();
     } catch(e) {
       alert(e);
-    }
-  }
-
-  async function handleLogin(e) {
-    e.preventDefault();
-    try {
-      const record = await db.collection('users').authWithPassword(
-        email,
-        password,
-      );
-      
-      setCookie('auth', db.authStore.model);
-      setProblem();
-      router.refresh();
-    } catch(error) {
-      console.log(error)
-
-      setProblem(error.message);
     }
   }
 
