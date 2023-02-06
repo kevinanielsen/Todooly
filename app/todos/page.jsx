@@ -10,6 +10,8 @@ export const dynamic = 'auto',
   runtime = 'nodejs',
   preferredRegion = 'auto';
 
+
+
 async function getTodos() {
   const user = getUserId();
   const data = await db.collection('tasks').getList(1, 50, {
@@ -19,6 +21,16 @@ async function getTodos() {
 }
 
 export default async function TodosPage() {
+  const user = getUserId();
+
+  if(!user) {
+    return(
+      <main className='flex items-center justify-center'>
+        <h1 className='text-bg dark:text-text text-base font-bold'>You need to login to see your todos.</h1>
+      </main>
+    )
+  }
+
   const data = await getTodos();
   const todos = data.items;
 
